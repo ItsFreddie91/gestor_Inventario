@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000!important;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 body{
-    font-family: "Nunito Sans", system-ui!important;
-    background-color: #fff!important;
+    font-family: "Nunito Sans", system-ui;
+    background-color: #fff;
 }
 .bg-holder{
     background-image: url('../Img/fondo_login.jpg');
-    position: absolute!important;
-    width: 100%!important;
-    min-height: 100%!important;
-    top: 0!important;
-    left: 0!important;
-    background-size: cover!important;
-    background-position: center!important;
-    background-repeat: no-repeat!important;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
