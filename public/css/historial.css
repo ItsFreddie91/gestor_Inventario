@@ -1,0 +1,104 @@
+/* Variables en español para el diseño */
+:root {
+    --color-fondo: #f8f9fa;
+    --color-header: #007bff;
+    --color-texto: #333;
+    --color-texto-claro: #fff;
+    --color-badge-warning: #ffc107;
+    --color-badge-success: #28a745;
+    --color-boton: #007bff;
+    --color-boton-hover: #0056b3;
+    --padding-boton: 10px 20px;
+    --borde-radius: 8px;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.contenedor-tabla {
+    background-color: #fff;
+    border-radius: var(--borde-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: var(--color-header);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    color: var(--color-texto);
+}
+
+/* Estilo de las celdas */
+table th {
+    background-color: var(--color-header);
+    color: var(--color-texto-claro);
+}
+
+/* Estilo de las filas alternas */
+table tr:nth-child(even) {
+    background-color: var(--color-fondo);
+}
+
+/* Estilo de los badges (estado de los pedidos) */
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--color-texto-claro);
+}
+
+.badge-warning {
+    background-color: var(--color-badge-warning);
+}
+
+.badge-success {
+    background-color: var(--color-badge-success);
+}
+
+/* Botón de detalles */
+.btn-detalles {
+    background-color: var(--color-boton);
+    color: var(--color-texto-claro);
+    border: none;
+    border-radius: var(--borde-radius);
+    padding: var(--padding-boton);
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-detalles:hover {
+    background-color: var(--color-boton-hover);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    table th, table td {
+        padding: 8px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .btn-detalles {
+        padding: 8px 15px;
+    }
+}

@@ -1,0 +1,115 @@
+:root {
+    --primary-color: #4e54c8;
+    --secondary-color: #8f94fb;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+.navbar-custom {
+    background: var(--primary-color);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-brand i {
+    color: #ffd700;
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .logout-text {
+        display: none;
+    }
+    .logout-btn {
+        padding: 0.5rem;
+    }
+    .logout-btn i {
+        margin: 0 !important;
+        font-size: 1.2rem;
+    }
+}
+
+/* Resto de los estilos sin cambios */
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 15px;
+    margin: 10px auto;
+    background: white;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.gradient-custom {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 15px 15px 0 0;
+}
+
+.producto-info {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+    border-radius: 15px;
+    border: none;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(78, 84, 200, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.2);
+}
+
+.category-badge {
+    background: rgba(78, 84, 200, 0.1);
+    color: var(--primary-color);
+    padding: 0.25rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
