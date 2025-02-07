@@ -4,6 +4,7 @@ use App\Http\Controllers\Administrador_Controller;
 use App\Http\Controllers\Almacenista_Controller;
 use App\Http\Controllers\Categoria_Controller;
 use App\Http\Controllers\Error_Controller;
+use App\Http\Controllers\Gerente_Controller;
 use App\Http\Controllers\Login_Controller;
 use App\Http\Controllers\Productos_Controller;
 use App\Http\Controllers\Proveedor_Controller;
@@ -42,6 +43,9 @@ Route::get('/Movimientos', [Administrador_Controller::class, 'Movimientos_Vista'
 
 #----Rutas del Almacenista----#
 Route::get('/Almacenista_Inicio', [Almacenista_Controller::class, 'Inicio'])->name('Almacenista_Inicio');
+
+#---Rutas del Gerente---#
+Route::get('/Gerente_Inicio', [Gerente_Controller::class, 'Gerente_Vista'])->name('Gerente_Inicio');
 
 #----Rutas de Error----#
 Route::get('/Pagina_Error', [Error_Controller::class, 'Pagina_Error'])->name('Pagina_Error');
