@@ -46,6 +46,7 @@ Route::get('/Almacenista_Inicio', [Almacenista_Controller::class, 'Inicio'])->na
 
 #---Rutas del Gerente---#
 Route::get('/Gerente_Inicio', [Gerente_Controller::class, 'Gerente_Vista'])->name('Gerente_Inicio');
+Route::get('/Reportes_Gerentes', [Gerente_Controller::class, 'Reportes_gerentes'])->name('Reportes_Gerentes');
 
 #----Rutas de Error----#
 Route::get('/Pagina_Error', [Error_Controller::class, 'Pagina_Error'])->name('Pagina_Error');

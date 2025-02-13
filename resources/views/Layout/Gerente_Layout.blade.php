@@ -1,105 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gerente</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Panel de Control</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <body class="bg-gray-100">
-        <!-- Botón de menú móvil -->
-        <button id="menuBtn" class="lg:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white p-2 rounded-md">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    
-        <!-- Sidebar -->
-        <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-blue-800 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-            <!-- Logo o título -->
-            <div class="p-6">
-                <h2 class="text-white text-2xl font-bold">Mi Panel</h2>
+<body class="bg-gray-100 h-screen flex">
+    <!-- Menú Lateral Responsivo -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full w-64 bg-indigo-700 text-white p-4 shadow-lg transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-50 flex flex-col">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <i class="fas fa-chart-pie mr-3 text-2xl"></i>
+                <h1 class="text-xl font-bold">Gerente</h1>
             </div>
-    
-            <!-- Enlaces -->
-            <nav class="mt-6">
-                <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-blue-700 transition-colors duration-200">
-                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
-                    Ventas
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-blue-700 transition-colors duration-200">
-                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    Reportes
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 text-white hover:bg-blue-700 transition-colors duration-200">
-                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
-                    </svg>
-                    Stock
-                </a>
-
-                <form action="{{route('Logout')}}" method="POST">
-                    @csrf
-                    <a href="#" onclick="this.closest('form').submit()" class="flex items-center px-6 py-3 text-white hover:bg-blue-700 transition-colors duration-200 mt-auto">
-                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                        </svg>
-                        <span>Salir</span>
+            <button id="closeSidebar" class="md:hidden">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex-grow">
+            <ul>
+                <li class="mb-4">
+                    <a href="{{route('Gerente_Inicio')}}" class="flex items-center hover:bg-indigo-600 p-2 rounded">
+                        <i class="fas fa-home mr-3"></i>
+                        Inventario
                     </a>
-                </form>
+                </li>
+                <li class="mb-4">
+                    <a href="{{route('Reportes_Gerentes')}}" class="flex items-center hover:bg-indigo-600 p-2 rounded">
+                        <i class="fa-solid fa-chart-line mr-3"></i>
+                        Reportes
+                    </a>
+                </li>
                 
-            </nav>
-        </div>
-    
-        <!-- Contenido principal -->
-        <div class="lg:ml-64 p-8">
-            <!--Contenido-->
-            <main>
-                @yield('Contenido')
-            </main>
-        </div>
-    
-        <script>
-            const menuBtn = document.getElementById('menuBtn');
-            const sidebar = document.getElementById('sidebar');
-            let isSidebarOpen = false;
-    
-            menuBtn.addEventListener('click', () => {
-                isSidebarOpen = !isSidebarOpen;
-                if (isSidebarOpen) {
-                    sidebar.classList.remove('-translate-x-full');
-                } else {
-                    sidebar.classList.add('-translate-x-full');
-                }
-            });
-    
-            // Cerrar sidebar al hacer clic fuera en dispositivos móviles
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth < 1024) {
-                    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && isSidebarOpen) {
-                        sidebar.classList.add('-translate-x-full');
-                        isSidebarOpen = false;
-                    }
-                }
-            });
-    
-            // Ajustar sidebar al cambiar el tamaño de la ventana
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 1024) {
-                    sidebar.classList.remove('-translate-x-full');
-                } else {
-                    if (!isSidebarOpen) {
-                        sidebar.classList.add('-translate-x-full');
-                    }
-                }
-            });
-        </script>
-    </body>
+            </ul>
+        </nav>
+        
+        <!-- Botón de Cerrar Sesión en la parte inferior -->
+
+        <form action="{{route('Logout')}}" method="POST">
+            @csrf
+            <div class="mt-auto pb-4">
+                <a href="#" onclick="this.closest('form').submit()" class="flex items-center hover:bg-indigo-600 p-2 rounded text-white">
+                    <i class="fas fa-sign-out-alt mr-3"></i>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </form>
+
+    </aside>
+
+    <!-- Overlay para móviles -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+
+    <!-- Panel Principal -->
+    <main class="flex-grow p-6 bg-gray-100 overflow-auto w-full md:w-auto">
+        <header class="flex justify-between items-center mb-6">
+            <div class="flex items-center">
+                <button id="openSidebar" class="md:hidden mr-4">
+                    <i class="fas fa-bars text-2xl text-gray-600"></i>
+                </button>
+            </div>
+            <div class="flex items-center">
+                <div class="flex items-center">
+                    @auth
+                    <img src="https://th.bing.com/th/id/OIP.OcmYwRCA9m-3b9kShi85IQHaJ4?rs=1&pid=ImgDetMain" alt="Usuario" class="rounded-full mr-2" width="30px">
+                        <span class="email botones_textos">{{ Auth::user()->correo_usuario }}</span>
+                    @else
+                        <h5>No hay sesión</h5>
+                    @endauth
+                </div>
+            </div>
+        </header>
+
+        <!--Contenido-->
+        @yield('Contenido')
+
+        @yield('Reportes')
+
+    </main>
+
+    <script>
+        // Script para el menú responsivo
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+
+        // Abrir sidebar
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        });
+
+        // Cerrar sidebar
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        // Cerrar sidebar al hacer clic fuera
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+    </script>
 </body>
 </html>
