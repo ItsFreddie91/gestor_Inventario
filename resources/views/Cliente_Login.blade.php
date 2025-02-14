@@ -92,7 +92,7 @@
 
                             <div class="input-wrap">
                                 <input type="password" name="Contrasena_R" id="Contrasena_R" minlength="8" class="input-field" onkeyup="this.value=Correo_Contraseña(this.value)" required/>
-                                <label>Contraseña</label>
+                                <label>Contraseña (min. 8 caracácteres)</label>
                             </div>
 
                             <div class="input-wrap">
