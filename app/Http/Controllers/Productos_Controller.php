@@ -35,7 +35,7 @@ class Productos_Controller extends Controller
             $nombreImagen = time() . '_' . $file->getClientOriginalName();
 
             // Mover la imagen a la carpeta 'public/img'
-            $file->move(public_path('Img/Productos'), $nombreImagen);
+            //$file->move(public_path('Img/Productos'), $nombreImagen);
 
             Log::info("Imagen subida correctamente: {$nombreImagen}");
 
