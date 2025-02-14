@@ -13,7 +13,7 @@
             @foreach ($Productos as $producto)
                 <div class="col">
                     <div class="card h-100 shadow-sm product-card">
-                        <img src="{{ asset($producto['foto_producto']) }}" class="card-img-top rounded" alt="Imagen del producto" height="300">
+                        <img src="{{ $producto['foto_producto'] }}" class="card-img-top rounded" alt="Imagen del producto" height="300">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-primary">${{ $producto['precio_producto'] }}</h5>
                             <p class="card-text text-secondary">{{ $producto['nombre_producto'] }}</p>

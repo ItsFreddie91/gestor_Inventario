@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Foto:</label>
-                                            <input type="file" name="Foto" id="Foto" class="form-control" required>
+                                            <input type="text" name="Foto" id="Foto" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="text-center">

@@ -21,12 +21,28 @@ class Productos_Controller extends Controller
                 'Codigo'=>'required|string',
                 'T_Categoria'=>'required|int',
                 'Proveedor_P' =>'required|int',
-                'Foto'=>'required|image|mimes:jpeg,png,jpg,webp|max:2048'
+                'Foto'=>'required|string'
             ]);
         } catch(Exception $e){
             Log::error("Error en la validación: " . $e->getMessage());
         }
 
+        // Guardar la ruta en la base de datos
+        $item = new Producto();
+        $item->nombre_producto = $request->nombre;
+        $item->descripcion_producto = $request->Descripcion;
+        $item->foto_producto = $request->Foto;
+        $item->codigo_producto = $request->Codigo;
+        $item->precio_producto = $request->Precio;
+        $item->categoria_id = $request->T_Categoria;
+        $item->proveedor_id = $request->Proveedor_P;
+
+        $item->save();
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->back()->with(['success' => 'Producto Registrado']);
+
+        /*
         if ($request->hasFile('Foto')) {
             // Obtener el archivo
             $file = $request->file('Foto');
@@ -39,23 +55,10 @@ class Productos_Controller extends Controller
 
             Log::info("Imagen subida correctamente: {$nombreImagen}");
 
-            // Guardar la ruta en la base de datos
-            $item = new Producto();
-            $item->nombre_producto = $request->nombre;
-            $item->descripcion_producto = $request->Descripcion;
-            $item->foto_producto = 'Img/Productos/' . $nombreImagen;
-            $item->codigo_producto = $request->Codigo;
-            $item->precio_producto = $request->Precio;
-            $item->categoria_id = $request->T_Categoria;
-            $item->proveedor_id = $request->Proveedor_P;
-
-            $item->save();
-
-            // Redirigir con un mensaje de éxito
-            return redirect()->back()->with(['success' => 'Producto Registrado']);
+            
         }
 
-        return redirect()->back()->withErrors(['Imagen_error' => 'No se agrego']);
+        return redirect()->back()->withErrors(['Imagen_error' => 'No se agrego']);*/
     }
 
     public function Repartir_Productos(Request $request){
