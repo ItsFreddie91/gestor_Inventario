@@ -98,6 +98,11 @@ class Productos_Controller extends Controller
             $cantidad_nueva = $buscar->cantidad + $request->Cantidad;
 
             $buscar->update(['cantidad' => $cantidad_nueva]);
+            $Movimiento = new Movimiento();
+            $Movimiento->cantidad = $request->Cantidad;
+            $Movimiento->tipo_movimiento = 'Entrada de mercancia';
+            $Movimiento->stock_id = $buscar->id_stock;
+            $Movimiento->save();
         }
 
         // Redirigir con un mensaje de éxito
