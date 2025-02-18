@@ -4,7 +4,7 @@
 
     @auth
         <div class="container text-center">
-            <h5>Bienvendio, {{ Auth::user()->correo_usuario }}</h5>
+            <h5>Bienvenido, {{ Auth::user()->correo_usuario }}</h5>
         </div>
     @endauth
 

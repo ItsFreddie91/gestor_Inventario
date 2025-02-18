@@ -207,9 +207,9 @@ class Tienda_Controller extends Controller
         }elseif($usuario->tipo_usuario_id !== 4){
             return redirect()->route('Pagina_Error')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }else{
-            $datos = Usuario::join('Personas', 'Personas.usuario_id', '=', 'usuarios.id_usuario')
+            $datos = Usuario::join('personas', 'personas.usuario_id', '=', 'usuarios.id_usuario')
             ->where('usuarios.id_usuario', '=', Auth::user()->id_usuario)
-            ->select('usuarios.*', 'Personas.*')
+            ->select('usuarios.*', 'personas.*')
             ->first();
 
             return view('Perfil', compact('datos'));
