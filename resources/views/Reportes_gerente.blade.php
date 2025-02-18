@@ -64,9 +64,9 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">
                                 Fecha de Inicio
                             </label>
-                            <input type="date" name="Fecha_inicio_ventas" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{Auth::user()->sucursal_id}}" hidden>
+                            <input type="date" name="Fecha_inicio_ventas" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" >
                         </div>
-                            <input name="Sucursal_2" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input name="Sucursal_2" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{Auth::user()->sucursal_id}}" hidden required>
                     </div>
                     <div class="space-y-4">
                         <div>
