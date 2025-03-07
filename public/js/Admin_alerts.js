@@ -1,4 +1,3 @@
-
 function confirmDelete(rowId) {
     Swal.fire({
         title: '¿Estás seguro?',

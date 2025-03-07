@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,11 +12,9 @@ class Usuario extends Authenticatable
 
     protected $table = 'usuarios';
     protected $fillable = ['correo_usuario','contrasena_usuario','tipo_usuario_id', 'sucursal_id'];
-    
     protected $primaryKey = 'id_usuario'; // Especifica tu clave primaria personalizada
     public $incrementing = true; // Si tu clave primaria es auto-incremental
     protected $keyType = 'int'; // Si tu clave primaria es un entero
-
 
     public function getAuthPassword()
     {
