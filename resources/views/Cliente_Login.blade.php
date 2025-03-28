@@ -18,6 +18,9 @@
             {{ $errors->first('tipo_user_error') }}
         </div>
     @endif
+    @if ($errors->has('Correo_R'))
+        <input type="hidden" id="Correo_Exis" value="true">
+    @endif
     <main>
         <div class="box">
             <div class="inner-box">

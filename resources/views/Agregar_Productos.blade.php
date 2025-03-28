@@ -30,7 +30,7 @@
 @endif
 
 @if ($errors->has('Producto_error'))
-    <input type="hidden" id="Producto_E" value="true">
+    <input type="hidden" id="Producto_E1" value="true">
 @endif
 <!--Mensajes de proveedor-->
 @if (session('Proveedor_Agregado'))

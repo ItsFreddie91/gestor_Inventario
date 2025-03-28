@@ -206,6 +206,16 @@ if(document.getElementById('Proveedor_E')){
     });
 }
 
+if(document.getElementById('Proveedor_E1')){
+    Swal.fire({
+        icon:"error",
+        title: "El Proveedor no se registró",
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+
 if(document.getElementById('Proveedor_A')){
     Swal.fire({
         icon:"success",

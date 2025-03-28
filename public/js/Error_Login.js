@@ -6,3 +6,12 @@ if (document.getElementById('loginError')) {
         timer: 2000
     });
 }
+
+if (document.getElementById('Correo_Exis')) {
+    Swal.fire({
+        icon: "error",
+        title: "El correo ya ha sido registrado!",
+        showConfirmButton: false,
+        timer: 2000
+    });
+}

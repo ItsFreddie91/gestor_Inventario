@@ -17,38 +17,44 @@ class Login_Controller extends Controller
     }
 
     public function registrar(Request $request){
-        // Validar datos de entrada
-        $request->validate([
-            'Correo_R' => 'required|email|unique:usuarios,correo_usuario',
-            'Contrasena_R' => 'required|string|min:6',
-            'Nombre' => 'required|string',
-            'Apellido_P' => 'required|string',
-            'Apellido_M' => 'required|string',
-            'Direccion' => 'required|string'
-        ]);
 
-        // Guardar el nuevo usuario
-        $item = new Usuario();
-        $item->correo_usuario = $request->Correo_R;
-        $item->contrasena_usuario = Hash::make($request->Contrasena_R);
-        $item->tipo_usuario_id = '4';
-        $item->save();
+        // Validar si el correo ya existe
+        if (Usuario::where('correo_usuario', $request->Correo_R)->exists()) {
+            return back()->withErrors(['Correo_R' => 'El correo ya está registrado.'])->withInput();
+        }else{
+            // Validar datos de entrada
+            $request->validate([
+                'Correo_R' => 'required|email|unique:usuarios,correo_usuario',
+                'Contrasena_R' => 'required|string|min:6',
+                'Nombre' => 'required|string',
+                'Apellido_P' => 'required|string',
+                'Apellido_M' => 'required|string',
+                'Direccion' => 'required|string'
+            ]);
 
-        // Obtener el ID del usuario recién registrado
-        $usuario_id = $item->id_usuario;
+            // Guardar el nuevo usuario
+            $item = new Usuario();
+            $item->correo_usuario = $request->Correo_R;
+            $item->contrasena_usuario = Hash::make($request->Contrasena_R);
+            $item->tipo_usuario_id = '4';
+            $item->save();
 
-        // Guardar la nueva persona con el ID del usuario
-        $item2 = new Persona();
-        $item2->nombre_persona = $request->Nombre;
-        $item2->apellidop_persona = $request->Apellido_P;
-        $item2->apellidom_persona = $request->Apellido_M;
-        $item2->direccion_persona = $request->Direccion;
-        $item2->usuario_id = $usuario_id;
-        $item2->save();
+            // Obtener el ID del usuario recién registrado
+            $usuario_id = $item->id_usuario;
 
-        Auth::login($item);
-        $request->session()->regenerate(); // Regenerar la sesión
-        return to_route('Index');
+            // Guardar la nueva persona con el ID del usuario
+            $item2 = new Persona();
+            $item2->nombre_persona = $request->Nombre;
+            $item2->apellidop_persona = $request->Apellido_P;
+            $item2->apellidom_persona = $request->Apellido_M;
+            $item2->direccion_persona = $request->Direccion;
+            $item2->usuario_id = $usuario_id;
+            $item2->save();
+
+            Auth::login($item);
+            $request->session()->regenerate(); // Regenerar la sesión
+            return to_route('Index');
+        }
     }
 
     public function Iniciar_Sesion(Request $request){
