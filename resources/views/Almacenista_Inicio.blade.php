@@ -1,40 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Almacén</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/Almacenista.css')}}">
-</head>
-<body>
-
+@extends('Layout.Almacenista_Layout')
+@section('Ingreso_Producto')
+<!-- El resto del contenido se mantiene igual -->
 @if (session('Repartido'))
     <input type="hidden" id="Repartido_Suc" value="true">
 @endif
-<!-- Navbar con texto responsivo -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="fas fa-warehouse me-3"></i>
-            <span class="d-none d-sm-inline">Sistema de Almacén</span>
-            <span class="d-sm-none">Almacén</span>
-        </a>
-        <div class="ms-auto">
-            <form action="{{route('Logout')}}" method="POST">
-                @csrf
-                <a class="logout-btn" onclick="this.closest('form').submit()" href="#">
-                    <i class="fas fa-sign-out-alt me-2"></i>
-                    <span class="logout-text">Cerrar Sesión</span>
-                </a>
-            </form>
-            
-        </div>
-    </div>
-</nav>
-
-<!-- El resto del contenido se mantiene igual -->
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -42,7 +11,7 @@
                 <div class="card-header gradient-custom text-white py-3">
                     <h4 class="mb-0 text-center fw-bold">
                         <i class="fas fa-box-open me-2"></i>
-                        Registro de Producto
+                        Ingreso de Producto
                     </h4>
                 </div>
                 <div class="card-body p-4">
@@ -114,8 +83,4 @@
     </div>
 </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{asset('js/Agregar_alerts.js')}}"></script>
-</body>
-</html>
+@endsection

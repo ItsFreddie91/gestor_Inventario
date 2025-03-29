@@ -1,6 +1,12 @@
 @extends('Layout.Tienda_Layout')
 
 @section('Cart')
+
+@if ($errors->any())
+    <input type="hidden" id="Carrito_Stock" value="true">
+@endif
+
+
 <div class="container my-5">
     <div class="row">
         <!-- Lista de productos -->
@@ -85,4 +91,6 @@
 </div>
 <script src="{{asset('js/Tienda_alerts.js')}}"></script>
 <script src="{{asset('js/botones_cart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/carrito_alerts.js')}}"></script>
 @endsection

@@ -22,28 +22,34 @@ body {
     color: #ffd700;
 }
 
-.logout-btn {
+.nav-link-custom, .logout-btn {
     background: transparent;
     border: none;
-    text-decoration: none;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     transition: all 0.3s ease;
     color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
-.logout-btn:hover {
+.nav-link-custom:hover, .logout-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
+form {
+    margin: 0;
+}
+
 @media (max-width: 768px) {
-    .logout-text {
+    .nav-text {
         display: none;
     }
-    .logout-btn {
+    .nav-link-custom, .logout-btn {
         padding: 0.5rem;
     }
-    .logout-btn i {
+    .nav-link-custom i, .logout-btn i {
         margin: 0 !important;
         font-size: 1.2rem;
     }

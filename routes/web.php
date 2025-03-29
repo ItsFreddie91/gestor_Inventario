@@ -43,6 +43,7 @@ Route::get('/Movimientos', [Administrador_Controller::class, 'Movimientos_Vista'
 
 #----Rutas del Almacenista----#
 Route::get('/Almacenista_Inicio', [Almacenista_Controller::class, 'Inicio'])->name('Almacenista_Inicio');
+Route::get('/Almacenista_Vender', [Almacenista_Controller::class, 'Vista_Vender'])->name('Almacenista_Vender');
 
 #---Rutas del Gerente---#
 Route::get('/Gerente_Inicio', [Gerente_Controller::class, 'Gerente_Vista'])->name('Gerente_Inicio');
@@ -53,9 +54,6 @@ Route::get('/Pagina_Error', [Error_Controller::class, 'Pagina_Error'])->name('Pa
 
 #----Rutas de Categorias----#
 Route::post('/store', [Categoria_Controller::class, 'store'])->name('store_categoria');
-Route::get('/Productos', function(){
-    return view('Productos');
-});
 
 #---Rutas de Sucursales---#
 Route::post('/Agregar_Sucursal', [Sucursal_Controller::class, 'Agregar_Ubicacion'])->name('Agregar_Sucursal');

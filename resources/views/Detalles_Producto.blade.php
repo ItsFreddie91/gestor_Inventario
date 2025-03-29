@@ -1,5 +1,8 @@
 @extends('Layout.Tienda_Layout')
 @section('Details')
+@if (session('error'))
+    <input type="hidden" id="Carrito_Stock" value="true">
+@endif
 <div class="container my-5">
     <div class="row">
         <!-- Product Image -->
@@ -49,8 +52,9 @@
             @endforeach
         </div>
     </section>
-    
-    
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('js/carrito_alerts.js')}}"></script>
 
 @endsection

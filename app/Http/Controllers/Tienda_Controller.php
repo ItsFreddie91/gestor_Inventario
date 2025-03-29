@@ -97,22 +97,47 @@ class Tienda_Controller extends Controller
         }
     }
 
-    public function agregar_carrito($id){
+    public function agregar_carrito($id) {
+        // Obtener el producto con su stock disponible en la sucursal "Online"
         $producto = Producto::join('categorias', 'productos.categoria_id', '=', 'categorias.id_categoria')
-        ->select('productos.*', 'categorias.nombre_categoria as categoria')
-        ->where('productos.id_producto', $id)
-        ->firstOrFail();
+            ->join('stocks', 'stocks.producto_id', '=', 'productos.id_producto')
+            ->join('sucursales', 'sucursales.id_sucursal', '=', 'stocks.sucursal_id')
+            ->select(
+                'productos.*',
+                'categorias.nombre_categoria as categoria',
+                'stocks.cantidad as stock_disponible' // Seleccionar el stock disponible
+            )
+            ->where('productos.id_producto', $id)
+            ->where('sucursales.nombre_sucursal', 'Online')
+            ->where('stocks.cantidad', '>', 0)
+            ->firstOrFail();
+    
+        // Buscar el producto en el carrito (si ya existe)
+        $itemEnCarrito = Cart::search(function ($cartItem) use ($producto) {
+            return $cartItem->id == $producto->id_producto;
+        })->first();
+    
+        // Calcular la cantidad que se intentaría añadir (actual + 1)
+        $cantidadEnCarrito = $itemEnCarrito ? $itemEnCarrito->qty : 0;
+        $cantidadTotal = $cantidadEnCarrito + 1;
+    
+        // Verificar si supera el stock disponible
+        if ($cantidadTotal > $producto->stock_disponible) {
+            return back()->with('error', 'No hay suficiente stock disponible.');
+        }
+    
+        // Añadir al carrito si hay stock suficiente
         Cart::add(
-            $producto->id_producto,           // ID del producto
-            $producto->nombre_producto,       // Nombre del producto
-            1,                                // Cantidad (por defecto 1)
-            $producto->precio_producto,       // Precio del producto
+            $producto->id_producto,
+            $producto->nombre_producto,
+            1, // Cantidad a añadir (1 unidad)
+            $producto->precio_producto,
             [
-                'foto'=>$producto->foto_producto,
-                'categoria'=>$producto->categoria
+                'foto' => $producto->foto_producto,
+                'categoria' => $producto->categoria
             ]
         );
-
+    
         return back()->with('success', 'Producto añadido al carrito');
     }
 
@@ -121,23 +146,45 @@ class Tienda_Controller extends Controller
         return back()->with('success', 'Producto se quito del carrito');
     }
 
-    public function actualizar_carrito(Request $request, $rowId){
-        // Validar la cantidad para evitar valores inválidos
+    public function actualizar_carrito(Request $request, $rowId) {
+        // Obtener el item del carrito
+        $cartItem = Cart::get($rowId);
+        
+        if (!$cartItem) {
+            return back()->with('error', 'El producto no existe en el carrito');
+        }
+    
+        // Obtener el producto con su stock actualizado
+        $producto = Producto::join('stocks', 'stocks.producto_id', '=', 'productos.id_producto')
+            ->join('sucursales', 'sucursales.id_sucursal', '=', 'stocks.sucursal_id')
+            ->select('productos.*', 'stocks.cantidad as stock_disponible')
+            ->where('productos.id_producto', $cartItem->id)
+            ->where('sucursales.nombre_sucursal', 'Online')
+            ->firstOrFail();
+    
+        // Validar la cantidad
         $validar = $request->validate([
-            'quantity' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1|max:' . $producto->stock_disponible,
+        ], [
+            'quantity.max' => 'La cantidad solicitada supera el stock disponible (' . $producto->stock_disponible . ' unidades)'
         ]);
-
+    
+        // Actualizar el carrito
         Cart::update($rowId, $request->quantity);
-
+    
+        // Respuesta para AJAX
         if ($request->ajax()) {
             return response()->json([
                 'success' => true,
                 'message' => 'Cantidad actualizada correctamente.',
+                'newSubtotal' => Cart::subtotal(),
+                'newTotalItems' => Cart::count()
             ]);
         }
-
-        return back()->with('success', 'Cantidad actualizada correctamente.');
+    
+        return back()->with('success', 'Cantidad actualizada correctamente');
     }
+    
 
     public function Crear_Pedido(){
         $total = 0;

@@ -5,8 +5,119 @@
     <title>Reporte de Productos</title>
     <!-- Bootstrap básico para DomPDF -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/reporte_ventas.css')}}">
-</head>
+    <style>
+        /* Reseteo básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Configuración específica para DomPDF */
+        @page {
+            margin: 0cm 0cm;
+        }
+
+        body {
+            margin-top: 2cm;
+            margin-bottom: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* Header simplificado para DomPDF */
+        .report-header {
+            background-color: #4361ee;  /* Color sólido en lugar de gradiente */
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .report-header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .report-header p {
+            font-size: 14px;
+        }
+
+        /* Tabla optimizada para DomPDF */
+        .table-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+        .table-custom thead th {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            color: #333;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 10px;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .table-custom tbody td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        /* Badges simplificados para DomPDF */
+        .badge-custom {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+        .badge-quantity {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-entrada {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-salida {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        /* Footer */
+        .report-footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid #dee2e6;
+            margin-top: 30px;
+        }
+
+        /* Utilidades adicionales */
+        .text-center {
+            text-align: center;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+    </style>
 <body>
     <div class="report-header">
         <h1>Reporte de Ventas</h1>

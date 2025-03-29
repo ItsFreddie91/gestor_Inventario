@@ -7,6 +7,9 @@
             <h5>Bienvenido, {{ Auth::user()->correo_usuario }}</h5>
         </div>
     @endauth
+    @if (session('error'))
+        <input type="hidden" id="Carrito_Stock" value="true">
+    @endif
 
     <div class="container mt-4">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -38,5 +41,6 @@
         </div>
     </div>
     
-        
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/carrito_alerts.js')}}"></script>
 @endsection
