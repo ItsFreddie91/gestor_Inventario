@@ -20,14 +20,14 @@
             <span class="d-sm-none">Almacén</span>
         </a>
         <div class="ms-auto d-flex align-items-center">
-            <a class="nav-link-custom" href="{{route('Almacenista_Inicio')}}">
+            {{-- <a class="nav-link-custom" href="{{route('Almacenista_Inicio')}}">
                 <i class="fas fa-chart-line me-2"></i>
                 <span class="nav-text">Ingresos</span>
             </a>
             <a class="nav-link-custom" href="{{route('Almacenista_Vender')}}">
                 <i class="fas fa-cash-register me-2"></i>
                 <span class="nav-text">Vender</span>
-            </a>
+            </a> --}}
             <form action="{{route('Logout')}}" method="POST">
                 @csrf
                 <a class="logout-btn" onclick="this.closest('form').submit()" href="#">
